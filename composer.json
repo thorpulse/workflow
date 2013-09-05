@@ -1,0 +1,8 @@
+{
+    "name": "torine/workflow",
+    "require": {},
+    "autoload": {
+        "psr-0": {"Torine\\WorkflowBundle": ""}
+    },
+    "target-dir": "Torine/WorkflowBundle"
+}

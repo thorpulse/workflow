@@ -1,2 +1,14 @@
-parameters:  
+parameters:
+  
+services:
+  torine.workflow.run.dao.no.save:
+    class: Torine\WorkflowBundle\Service\DAO\NoSaveRunDAO
+    
+  torine.workflow.run.dao.disk:
+    class: Torine\WorkflowBundle\Service\DAO\DiskRunDAO
+    
+  torine.workflow.run.factory:
+    class: Torine\WorkflowBundle\Service\Run\Factory
+    arguments:
+      - '@torine.workflow.run.dao.no.save'
   

@@ -1,2 +1,31 @@
-parameters:  
+parameters:
+  
+services:  
+  # Workflow services
+  torine.workflow.workflow.dao:
+    alias: torine.workflow.workflow.dao.disk
+  
+  torine.workflow.workflow.dao.disk:
+    class: Torine\WorkflowBundle\Service\Workflow\DiskDao
+    arguments:
+      - '%kernel.root_dir%/Resources/workflow'
+      - '@serializer'
+      - '@logger'
+  
+  # Run services
+  torine.workflow.run.dao:
+    alias: torine.workflow.run.dao.disk
+    
+  torine.workflow.run.dao.disk:
+    class: Torine\WorkflowBundle\Service\Run\DiskDao
+    arguments:
+      - '%kernel.root_dir%/var/run'
+      - '@serializer'
+      - '@logger'
+    
+  torine.workflow.run.factory:
+    class: Torine\WorkflowBundle\Service\Run\Factory
+    arguments:
+      - '@torine.workflow.run.dao'
+      - '@torine.workflow.workflow.dao'
   

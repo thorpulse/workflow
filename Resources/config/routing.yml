@@ -1,0 +1,23 @@
+torine.workflow.post:
+  pattern:  /workflow/{workflowId}
+  defaults: 
+    _controller: TorineWorkflowBundle:Workflow:post
+    _format: json
+  requirements:
+    _method:  POST
+    
+torine.workflow.run.get:
+  pattern:  /run/{runId}
+  defaults: 
+    _controller: TorineWorkflowBundle:Run:get
+    _format: json
+  requirements:
+    _method:  GET
+    
+torine.workflow.run.post:
+  pattern:  /run/{runId}
+  defaults: 
+    _controller: TorineWorkflowBundle:Run:get
+    _format: json
+  requirements:
+    _method:  POST

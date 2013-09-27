@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Torine Workflow package.
+ * This file is part of the Torine package.
  *
  * (c) Rémi Alvado <remi.alvado@gmail.com>
  *
@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Torine\WorkflowBundle;
-
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+namespace Torine\WorkflowBundle\Model\Utils;
 
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
  */
-class TorineWorkflowBundle extends Bundle
+interface Valuable
 {
-    
+    /**
+     * @return a scalar or an array
+     */
+    public function getValue();
 }

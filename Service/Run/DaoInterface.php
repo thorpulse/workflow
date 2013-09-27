@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Torine\WorkflowBundle\Service\DAO;
+namespace Torine\WorkflowBundle\Service\Run;
 
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
  */
-interface RunDAOInterface
+interface DaoInterface
 {
     /**
      * Save a run into the datastore

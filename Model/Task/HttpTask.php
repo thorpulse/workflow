@@ -16,7 +16,7 @@ use Torine\WorkflowBundle\Model\Utils\Valuable;
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
  */
-class HttpTask extends BaseTask
+class HttpTask extends Task
 {
     /**
      * {@inheritDoc}

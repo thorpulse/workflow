@@ -9,14 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Torine\WorkflowBundle\Service\DAO;
-
-use Symfony\Component\Filesystem\Filesystem;
+namespace Torine\WorkflowBundle\Service\Run;
 
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
  */
-class DiskRunDAO
+class RiakDao implements DaoInterface
 {
     
     /**
@@ -41,21 +39,13 @@ class DiskRunDAO
         return $this->runBucket->delete($runId);
     }
 
-    public function __construct($directory, $serializer)
+    public function __construct($riakCluster)
     {
-        $this->fileSystem = new Filesystem();
-        if ($this->fileSystem->exists($directory)) {
-            throw new Exception("'$directory' does not exist. It is supposed to be used to store runs. Can't continue without it...");
-        }
+        $this->runBucket = $riakCluster->getBucket("workflow_run");
     }
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem
+     * @var \Kbrw\RiakBundle\Model\Bucket\Bucket
      */
-    public $fileSystem;
-    
-    /**
-     * @var \
-     */
-    public $serializer;
+    public $runBucket;
 }

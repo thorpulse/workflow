@@ -1,6 +1,8 @@
 {
     "name": "torine/workflow",
-    "require": {},
+    "require": {
+        "jms/serializer-bundle": "0.12.*"
+    },
     "autoload": {
         "psr-0": {"Torine\\WorkflowBundle": ""}
     },

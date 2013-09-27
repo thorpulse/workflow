@@ -11,12 +11,22 @@
 
 namespace Torine\WorkflowBundle\Model\Utils;
 
+use JMS\Serializer\Annotation as Ser;
+
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
+ * @Ser\XmlRoot("databag")
  */
 class Databag implements \Countable, \IteratorAggregate, \ArrayAccess
 {
 
+    /**
+     * A map of data
+     * 
+     * @var array<string, string>
+     * @Ser\Type("array<string, string>")
+     * @Ser\XmlList(inline = true)
+     */
     protected $bag;
 
     /**

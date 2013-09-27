@@ -20,28 +20,56 @@ class Factory
 {
     /**
      * The DAO used to manipulate runs
-     * @var \Torine\WorkflowBundle\Service\DAO\RunDAOInterface
+     * @var \Torine\WorkflowBundle\Service\Run\DaoInterface
      */
-    protected $dao;
+    protected $runDao;
+    
+    /**
+     * The DAO used to manipulate workflows
+     * @var \Torine\WorkflowBundle\Service\Workflow\DaoInterface
+     */
+    protected $workflowDao;
     
     /**
      * Constructor
      * 
-     * @param \Torine\WorkflowBundle\Service\DAO\RunDAOInterface $dao
+     * @param \Torine\WorkflowBundle\Service\Run\DaoInterface $runDao
+     * @param \Torine\WorkflowBundle\Service\Workflow\DaoInterface $workflowDao
      */
-    function __construct($dao)
+    function __construct($runDao, $workflowDao)
     {
-        $this->dao = $dao;
+        $this->runDao = $runDao;
+        $this->workflowDao = $workflowDao;
     }
 
     /**
      * Creates a new run
      * 
-     * @param string $id
+     * @param string $workflowId
      * @return \Torine\WorkflowBundle\Model\Task\Run
      */
-    public function createRun($id)
+    public function createRun($workflowId)
     {
-        return new Run($id, $this->dao);
+        $workflow = $this->workflowDao->get($workflowId);
+        if (!isset($workflow)) {
+            throw new \Exception("can't find workflow with id '$workflowId'");
+        }
+        $run = new Run($workflowId, $workflowId . "-" . date_format(new \DateTime(), "YmdHisu"), $this->runDao);
+        foreach($workflow->getTasks() as $task) {
+            $run->addTask(clone $task);
+        }
+        
+        return $run;
+    }
+
+    /**
+     * Get a run from the datastore
+     * 
+     * @param string $runId
+     * @return \Torine\WorkflowBundle\Model\Task\Run
+     */
+    public function getRun($runId)
+    {
+        return $this->runDao->get($runId);
     }
 }

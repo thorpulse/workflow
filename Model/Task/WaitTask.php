@@ -9,33 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace Torine\WorkflowBundle\Service\DAO;
+namespace Torine\WorkflowBundle\Model\Task;
 
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
  */
-class NoSaveRunDAO
+class WaitTask extends Task
 {
     
-    /**
-     * {@inheritDoc}
-     */
-    public function save($run)
+    function __construct($name)
     {
-        return true;
-    }   
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function get($runId) {
-        return null;
+        parent::__construct();
+        $this->setName($name);
     }
     
     /**
      * {@inheritDoc}
      */
-    public function delete($runId) {
+    public function doRun($inputParameters)
+    {
+        echo "Waiting for : " . $this->params["duration"] . "\n";
+        sleep($this->params["duration"]);
+        
         return true;
     }
 }

@@ -14,7 +14,7 @@ namespace Torine\WorkflowBundle\Model\Task;
 /**
  * @author Rémi Alvado <remi.alvado@gmail.com>
  */
-class EchoTask extends BaseTask
+class EchoTask extends Task
 {
     
     function __construct($name)
